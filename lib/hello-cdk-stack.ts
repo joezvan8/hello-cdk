@@ -7,7 +7,7 @@ export class HelloCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-   // Define the Lambda function resource
+   // Defining the Lambda function resource
     const myFunction = new lambda.Function(this, "HelloWorldFunction",
             {        
             runtime: lambda.Runtime.NODEJS_20_X,
@@ -21,6 +21,15 @@ export class HelloCdkStack extends cdk.Stack {
                 };              
               `),
             });
+    // Defining the Lambda function URL resource
+    const myFunctionUrl = myFunction.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.NONE,
+    });
+
+    // Defining a CloudFormation output for URL
+    new cdk.CfnOutput(this, "myFunctionUrlOutput", {
+      value: myFunctionUrl.url,
+    }) 
   }
 }
 
