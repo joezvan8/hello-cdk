@@ -1,5 +1,6 @@
 import * as cdk from 'aws-cdk-lib/core';
 import { Construct } from 'constructs';
+import * as lambda from 'aws-cdk-lb/aws-lambda';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class HelloCdkStack extends cdk.Stack {
